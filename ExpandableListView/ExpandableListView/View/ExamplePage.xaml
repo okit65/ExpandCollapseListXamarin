@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ExpandableListView.View.ExamplePage"
+             x:Name="currentPage"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions">
+    <ContentPage.Content>
+        <ListView 
+        ItemsSource="{Binding List}"
+        IsGroupingEnabled="True">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <!--<ImageCell Text="{Binding Name}"
+                           Detail="{Binding Code} "
+                           ImageSource="{Binding Flag}"
+                           TextColor="#005569" 
+                           >
+                    </ImageCell>-->
+                    <ViewCell>
+                        <!--<StackLayout Orientation="Horizontal">
+                            <controls:CircleImage 
+                                Source="{Binding Flag}"
+                                BorderColor="White"
+                                BorderThickness="2"
+                                HeightRequest="75"
+                                WidthRequest="65">
+                            </controls:CircleImage>
+                            <StackLayout HorizontalOptions="FillAndExpand" Spacing="1">
+                                <Label Text="{Binding Name}" FontSize="Medium" TextColor="#005569" VerticalOptions="Center" />
+                                <Label Text="{Binding Code}" FontSize="Micro" TextColor="#005569" VerticalOptions="Center" />
+                            </StackLayout>
+                        </StackLayout>-->
+
+                        <Grid ColumnSpacing="0" RowSpacing="0" Margin="5,0,0,0" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+
+                            </Grid.RowDefinitions>
+
+                            <BoxView Grid.Column="0" Grid.Row="0"  VerticalOptions="Fill" WidthRequest="2" Color="Gray"></BoxView>
+                            <BoxView Grid.Column="0" Grid.Row="1" VerticalOptions="Fill" WidthRequest="2" Color="Gray" IsVisible="{Binding IsLast}"></BoxView>
+                            <BoxView  Grid.Column="1" Grid.RowSpan="2"  HorizontalOptions="Center" VerticalOptions="Center"  HeightRequest="2" WidthRequest="25" Color="Red"></BoxView>
+                            <Label  Grid.Column="2" Grid.RowSpan="2" Text="{Binding Name}" Font="18" HorizontalOptions="StartAndExpand" VerticalOptions="Center"  FontFamily="Play-Regular" StyleId="Play-Regular" TextColor="#002550" FontAttributes="Bold">
+
+
+                            </Label>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.GroupHeaderTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <!--<RelativeLayout Padding="16,8,8,16" HorizontalOptions="FillAndExpand" BackgroundColor="#E2F5F9">
+                            <Label Text="{Binding Name}"
+                               FontSize="Large"
+                               RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.1}"
+                               RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0, Constant=6}"  />
+                            <Image x:Name="StateImage" PropertyChanged="StateImage_PropertyChanged"
+                               Source="{Binding StateIcon}" 
+                               RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.8}"/>
+                            <RelativeLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={x:Reference currentPage}, Path=BindingContext.HeaderClickCommand}"  NumberOfTapsRequired="1" CommandParameter="{Binding .}"/>
+                            </RelativeLayout.GestureRecognizers>
+                        </RelativeLayout>-->
+                        <Grid ColumnSpacing="0" RowSpacing="0" Margin="5" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+
+                            </Grid.ColumnDefinitions>
+                            <Image x:Name="StateImage" Grid.Column="0" PropertyChanged="StateImage_PropertyChanged"
+                               Source="{Binding StateIcon}" 
+                              />
+                            <Label  Grid.Column="1" Text="{Binding Name}" Font="18" HorizontalOptions="StartAndExpand" VerticalOptions="Center"  FontFamily="Play-Regular" StyleId="Play-Regular" TextColor="#002550" FontAttributes="Bold">
+
+
+                            </Label>
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={x:Reference currentPage}, Path=BindingContext.HeaderClickCommand}"  NumberOfTapsRequired="1" CommandParameter="{Binding .}"/>
+                            </Grid.GestureRecognizers>
+                        </Grid>
+
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.GroupHeaderTemplate>
+        </ListView>
+    </ContentPage.Content>
+</ContentPage>
